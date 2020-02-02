@@ -23,7 +23,7 @@ const enemy_map = {
   0: 91086,
   1: 91082,
   2: 91087,
-  3: 91085
+  3: 99095
 };
 
 const imgLoader = new ImgLoader()
@@ -255,6 +255,8 @@ class Map {
       var mission = this.mission_info[this.missionId];
       this.mapImgName = `${IMAGE_BASEPATH}/map/` + mission.map_res_name + ".png";
       imgLoader.add(this.mapImgName);
+      imgLoader.add(`${IMAGE_BASEPATH}/spine/Nyto_black.png`);
+      this.enemy_character_type_info[900127].imagename = `${IMAGE_BASEPATH}/spine/Nyto_black.png`;
       $.each(mission.spot_ids, (index, spot_id) => {
         var spot = this.spot_info[spot_id];
   
@@ -271,11 +273,11 @@ class Map {
         } else {
           imagename = "spot" + spot.type;
         }
-        imagename = spot_img[imagename];
+        imagename = spot_img[imagename] || imagename;
         imagename = `${IMAGE_BASEPATH}/spot/` + imagename + spot.belong + ".png";
         spot.imagename = imagename;
         imgLoader.add(imagename);
-  
+
   
         if (spot.building_id != 0) {
           var building = this.building_info[spot.building_id];
@@ -524,7 +526,7 @@ class Map {
         if (spot.enemy_team_id) {
           var enemy_team = this.enemy_team_info[spot.enemy_team_id];
           var leader_info =this. enemy_character_type_info[enemy_team.enemy_leader];
-          this.drawSpine(ctx, x0, y0, leader_info.imagename, (leader_info.name), selected);
+          this.drawSpine(ctx, x0, y0, leader_info.imagename, (leader_info.code), selected);
         }
       });
   
