@@ -3,7 +3,7 @@ const CANVAS_FG_ID = 'map_canvas_fg'
 const CANVAS_BG_ID = 'map_canvas_bg'
 const CANVAS_TMP_ID = 'map_canvas_tmp'
 const WATERMARK = 'https://gf.hometehomete.com/'
-const IMAGE_BASEPATH = "/img"
+const IMAGE_BASEPATH = "img"
 const spot_img = {
     "spot1": "spot1US",
     "spot2": "spot2",
@@ -774,7 +774,6 @@ class Map {
   document.addEventListener('keypress', logKey);
 
   function logKey(e) {
-    console.log(e.code);
     idx = {
       'Digit1': 0,
       'Digit2': 1,
@@ -786,7 +785,6 @@ class Map {
       'Digit3': 2,
       'Digit4': 3
     }[e.code] : idx;
-    console.log(idx);
 
   }
   var map = new Map(1)
